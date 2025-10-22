@@ -1,0 +1,53 @@
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f4f6f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #004aad;
+  color: white;
+  text-align: center;
+  padding: 40px 0;
+}
+
+section {
+  max-width: 800px;
+  margin: 40px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: #004aad;
+}
+
+ul {
+    list-style-type: square;
+  padding-left: 20px;
+}
+
+.project-card {
+  background-color: #e8f0fe;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+footer {
+  text-align: center;
+  background-color: #004aad;
+  color: white;
+  padding: 15px 0;
+}
+footer a {
+  color: #ffd700;
+  text-decoration: none;
+}
+footer a:hover {
+  text-decoration: underline;
+}
