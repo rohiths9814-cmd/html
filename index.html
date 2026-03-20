@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>JS Master Practice</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#111;
+    color:white;
+    text-align:center;
+}
+
+.container{
+    margin-top:30px;
+}
+
+button{
+    padding:10px;
+    margin:5px;
+    cursor:pointer;
+}
+
+input{
+    padding:8px;
+    margin:5px;
+}
+
+.todo{
+    margin-top:20px;
+}
+
+.task{
+    background:#222;
+    margin:5px;
+    padding:10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1 id="mainHeading">🔥 JS Practice Ground</h1>
+
+<div class="container">
+
+<button onclick="changeColor()">Change Heading Color</button>
+<button onclick="changeBackground()">Change Background</button>
+
+<br><br>
+
+<input id="liveInput" placeholder="Type something">
+<p id="liveText"></p>
+
+
+<button onclick="toggleDark()">🌙 Toggle Dark Mode</button>
+
+<br>
+
+<h2>Login Practice</h2>
+<input id="username" placeholder="Username">
+<input id="password" type="password" placeholder="Password">
+<button onclick="loginCheck()">Login</button>
+<p id="loginMsg"></p>
+
+<br>
+
+<h2>TODO Practice</h2>
+<input id="taskInput" placeholder="New Task">
+<button onclick="addTask()">Add Task</button>
+
+<div id="taskList" class="todo"></div>
+
+<br>
+
+<h2>API Practice</h2>
+<button onclick="loadUser()">Load Random User</button>
+<p id="apiData"></p>
+
+</div>
+
+<script>
+
+window.onload = function(){
+    alert("🔥 Welcome Partner — JS Training Started");
+}
+
+function changeColor(){
+    let colors = ["red","lime","yellow","cyan","orange","pink"];
+    let random = colors[Math.floor(Math.random()*colors.length)];
+    document.getElementById("mainHeading").style.color = random;
+}
+
+function changeBackground(){
+    document.body.style.background =
+    "linear-gradient(90deg, #0f2027, #2c5364)";
+}
+
+document.getElementById("liveInput").addEventListener("keyup",function(){
+    let text = this.value.toUpperCase();
+    document.getElementById("liveText").innerText = text;
+});
+
+function loginCheck(){
+    let user=document.getElementById("username").value;
+    let pass=document.getElementById("password").value;
+
+    if(user=="" || pass==""){
+        document.getElementById("loginMsg").innerText="❌ Fill all fields";
+    }
+    else if(pass.length<6){
+        document.getElementById("loginMsg").innerText="❌ Weak password";
+    }
+    else{
+        document.getElementById("loginMsg").innerText="✅ Login success";
+        localStorage.setItem("user",user);
+    }
+}
+
+function toggleDark(){
+    if(document.body.style.background === "white"){
+        document.body.style.background = "#111";
+        document.body.style.color = "white";
+    }else{
+        document.body.style.background = "white";
+        document.body.style.color = "black";
+    }
+}
+
+function addTask(){
+    let task=document.getElementById("taskInput").value;
+
+    let div=document.createElement("div");
+    div.className="task";
+    div.innerText=task;
+
+    div.onclick=function(){
+        this.remove();
+    }
+
+    document.getElementById("taskList").appendChild(div);
+}
+
+function loadUser(){
+    fetch("https://randomuser.me/api/")
+    .then(res=>res.json())
+    .then(data=>{
+        document.getElementById("apiData").innerText =
+        data.results[0].name.first + " - " +
+        data.results[0].email;
+    })
+}
+
+</script>
+
+</body>
+</html>
